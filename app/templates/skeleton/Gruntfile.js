@@ -97,12 +97,13 @@ module.exports = function(grunt) {
                 files: [
                     {src: ['img/**'], dest: 'dist/'},
                     {
-                        src: ['src/bower_components/font-awesome/fonts/**'],
+                        src: ['bower_components/font-awesome/fonts/**'],
                         dest: 'dist/',
                         filter: 'isFile',
-                        expand: true
+                        expand: true,
+                        cwd: 'src/'
                     },
-                    {src: ['src/bower_components/bootstrap/fonts/**'], dest: 'dist/', filter: 'isFile', expand: true}
+                    {src: ['bower_components/bootstrap/fonts/**'], dest: 'dist/', filter: 'isFile', expand: true, cwd: 'src/'}
                     //{src: ['src/bower_components/angular-ui-utils/ui-utils-ieshiv.min.js'], dest: 'dist/'},
                     //{src: ['src/bower_components/select2/*.png','src/bower_components/select2/*.gif'], dest:'dist/css/',flatten:true,expand:true},
                     //{src: ['src/bower_components/angular-mocks/angular-mocks.js'], dest: 'dist/'}
@@ -113,8 +114,8 @@ module.exports = function(grunt) {
             read: {
                 options: {
                     read: [
-                        {selector: 'script[data-concat!="false"]', attribute: 'src', writeto: 'appjs'},
-                        {selector: 'link[rel="stylesheet"][data-concat!="false"]', attribute: 'href', writeto: 'appcss'}
+                        {selector: 'script[data-concat!="false"]', attribute: 'src', writeto: 'appjs', isPath: true},
+                        {selector: 'link[rel="stylesheet"][data-concat!="false"]', attribute: 'href', writeto: 'appcss', isPath: true}
                     ]
                 },
                 src: 'src/index.html'

@@ -84,16 +84,18 @@ exports.inject = function(filename, that, module) {
     }
 };
 
-exports.injectRoute = function(moduleFile, name, ctrl, ctrAs, route, routeUrl, that) {
+exports.injectRoute = function(moduleFile, name, ctrl, ctrlAs, route, routeUrl, that) {
 
     routeUrl = routeUrl.replace(/\\/g, '/');
 
 
-    var code = '$stateProvider.state(\'' + name + '\', {\n        url: \'' + route +
-        '\',\n        templateUrl: \'' + routeUrl + '\'\n    ,' +
-        '\',\n        controller: \'' + ctrl + '\'\n    ,'
-        '\',\n        controllerAs: \'' + ctrlAs + '\'\n'
-        '});';
+    var code = "" +
+        "$stateProvider.state('" + name + "', {\n" +
+        "               url: '" + route + "',\n" +
+        "               templateUrl: '" + routeUrl + "',\n" +
+        "               controller: '" + ctrl + "',\n" +
+        "               controllerAs: '" + ctrlAs + "'\n" +
+        "       });";
     exports.addToFile(moduleFile, code, exports.STATE_MARKER);
 
 

@@ -1,7 +1,7 @@
 'use strict';
 var util = require('util');
 var yeoman = require('yeoman-generator');
-var cgUtils = require('../utils.js');
+var ccUtils = require('../utils.js');
 var _ = require('underscore');
 _.str = require('underscore.string');
 _.mixin(_.str.exports());
@@ -10,7 +10,7 @@ var path = require('path');
 
 var ModalGenerator = module.exports = function ModalGenerator(args, options, config) {
 
-    cgUtils.getNameArg(this, args);
+    ccUtils.getNameArg(this, args);
 
     yeoman.generators.Base.apply(this, arguments);
 
@@ -23,13 +23,13 @@ ModalGenerator.prototype.askFor = function askFor() {
 
     var prompts = [];
 
-    cgUtils.addNamePrompt(this, prompts, 'modal');
+    ccUtils.addNamePrompt(this, prompts, 'modal');
 
     this.prompt(prompts, function(props) {
         if(props.name) {
             this.name = props.name;
         }
-        cgUtils.askForModuleAndDir('modal', this, true, cb);
+        ccUtils.askForModuleAndDir('modal', this, true, cb);
     }.bind(this));
 
 };
@@ -38,7 +38,7 @@ ModalGenerator.prototype.files = function files() {
 
     this.ctrlname = _.camelize(_.classify(this.name)) + 'Ctrl';
 
-    cgUtils.processTemplates(this.name, cgUtils.getDirWithSrc(this.dir), 'modal', this, null, null, this.module);
+    ccUtils.processTemplates(this.name, ccUtils.getDirWithSrc(this.dir), 'modal', this, null, null, this.module);
 
     setTimeout((function() {
 
