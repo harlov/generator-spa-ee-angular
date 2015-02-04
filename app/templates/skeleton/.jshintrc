@@ -26,6 +26,11 @@
         "expect": true,
         "xdescribe": true,
         "xit": true,
-        "spyOn": true
+        "spyOn": true,
+        "element": true,
+        "by": true,
+        "browser": true,
+        "protractor": true,
+        "exports": true
     }
 }

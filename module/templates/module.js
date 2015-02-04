@@ -1,14 +1,11 @@
-angular.module('<%= _.camelize(name) %>', ['ui.bootstrap','ui.utils','<%= routerModuleName %>','ngAnimate']);
-<% if (!uirouter) { %>
-angular.module('<%= _.camelize(name) %>').config(function($routeProvider) {
+(function(angular) {
+    'use strict';
 
-    /* Add New Routes Above */
+    angular.module('<%= _.camelize(name) %>', ['ui.bootstrap', 'ui.utils', '<%= routerModuleName %>', 'ngAnimate']);
+    angular.module('<%= _.camelize(name) %>').config(function($stateProvider) {
 
-});
-<% } %><% if (uirouter) { %>
-angular.module('<%= _.camelize(name) %>').config(function($stateProvider) {
+        /* Add New States Above */
 
-    /* Add New States Above */
+    });
 
-});
-<% } %>
+})(angular);

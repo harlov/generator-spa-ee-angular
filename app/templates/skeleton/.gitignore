@@ -1,6 +1,7 @@
 temp/
 dist/
 node_modules/
+src/bower_components/
 _SpecRunner.html
 .DS_Store
 test-results.xml
