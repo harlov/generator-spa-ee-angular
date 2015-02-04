@@ -171,4 +171,4 @@ Importantly, grunt-dom-munger uses CSS attribute selectors to manage the parsing
 
 Release History
 -------------
-* 02/04/15 - v0.9 - fairly tested fork of cg-angular with all the changes mentioned above
+* 02/04/15 - v0.9.0 - fairly tested fork of cg-angular with all the changes mentioned above
