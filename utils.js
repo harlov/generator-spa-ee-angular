@@ -61,6 +61,7 @@ exports.inject = function(filename, that, module) {
     if(_(filename).endsWith('-spec.js') ||
         _(filename).endsWith('_spec.js') ||
         _(filename).endsWith('-test.js') ||
+        _(filename).endsWith('-e2e.js') ||
         _(filename).endsWith('_test.js')) {
         return;
     }
@@ -78,6 +79,7 @@ exports.inject = function(filename, that, module) {
             injectFileRef = path.relative(path.dirname(module.file), filename);
         }
         injectFileRef = injectFileRef.replace(/\\/g, '/');
+        injectFileRef = injectFileRef.replace(/src\//g, '');
         var lineTemplate = _.template(config.template)({filename: injectFileRef});
         exports.addToFile(configFile, lineTemplate, config.marker);
         that.log.writeln(chalk.green(' updating') + ' %s', path.basename(configFile));
@@ -87,6 +89,7 @@ exports.inject = function(filename, that, module) {
 exports.injectRoute = function(moduleFile, name, ctrl, ctrlAs, route, routeUrl, that) {
 
     routeUrl = routeUrl.replace(/\\/g, '/');
+    routeUrl = routeUrl.replace(/src\//g, '');
 
 
     var code = "" +
