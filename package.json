@@ -1,10 +1,13 @@
 {
     "name": "generator-cc-angular",
     "version": "0.9",
-    "description": "Yeoman Generator for Enterprise Angular projects.",
+    "description": "Yeoman Generator for Enterprise Angular projects - the complete stress free package.",
     "keywords": [
         "yeoman-generator",
-        "angular"
+        "angular",
+        "protractor",
+        "tdd",
+        "clean code"
     ],
     "homepage": "https://github.com/AnBauer/generator-cc-angular",
     "bugs": "https://github.com/AnBauer/generator-cc-angular/issues",
