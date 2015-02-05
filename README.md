@@ -87,13 +87,14 @@ Prerequisites: Node, Grunt, Yeoman, and Bower.  Once Node is installed, do:
 
 Next, install this generator:
 
-    # for global use
+    # for global use, otherwise install in project
     npm install -g generator-cc-angular
 
 To create a project:
 
     mkdir MyNewAwesomeApp
     cd MyNewAwesomeApp
+    npm install generator-cc-angular    #if not installed globally
     yo cc-angular
 
 Grunt Tasks
