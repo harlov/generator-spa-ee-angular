@@ -51,17 +51,17 @@ exports.processTemplates = function(name, dir, type, that, defaultDir, configNam
             var templateFile = path.join(templateDirectory, template);
             //create the file
             that.template(templateFile, path.join(dir, customTemplateName));
-            //inject the file reference into index.html/app.less/etc as appropriate
+            //inject the file reference into index.html/app.module.less/etc as appropriate
             exports.inject(path.join(dir, customTemplateName), that, module);
         });
 };
 
 exports.inject = function(filename, that, module) {
     //special case to skip unit tests
-    if(_(filename).endsWith('-spec.js') ||
+    if(_(filename).endsWith('.spec.js') ||
         _(filename).endsWith('_spec.js') ||
         _(filename).endsWith('-test.js') ||
-        _(filename).endsWith('-e2e.js') ||
+        _(filename).endsWith('.e2e.js') ||
         _(filename).endsWith('_test.js')) {
         return;
     }
@@ -137,7 +137,7 @@ exports.getParentModule = function(dir) {
 exports.askForModule = function(type, that, cb) {
 
     var modules = that.config.get('modules');
-    var mainModule = ngParseModule.parse('src/app.js');
+    var mainModule = ngParseModule.parse('src/app.module.js');
     mainModule.primary = true;
 
     if(!modules || modules.length === 0) {

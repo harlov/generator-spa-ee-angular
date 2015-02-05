@@ -116,7 +116,7 @@ gulp.task('build', ['clean', 'css', 'js', 'indexHtml', 'images', 'fonts']);
 
 /*
 
- -specifying clean dependency on each task is ugly
+ .specifying clean dependency on each task is ugly
  https://github.com/robrich/orchestrator/issues/26
 
  -gulp-jasmine needs a phantomjs option

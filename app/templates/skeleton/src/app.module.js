@@ -1,6 +1,6 @@
 (function(angular) {
     'use strict';
-    angular.module('<%= _.camelize(appname) %>', ['ui.utils', 'ui.router', 'ngAnimate']);
+    angular.module('<%= _.camelize(appname) %>', ['ui.router']);
 
     angular.module('<%= _.camelize(appname) %>').config(function($stateProvider, $urlRouterProvider) {
 

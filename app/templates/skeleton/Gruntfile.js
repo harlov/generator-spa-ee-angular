@@ -8,7 +8,7 @@ var pkg = require('./package.json');
 //this method is used to create a set of inclusive patterns for all subdirectories
 //skipping node_modules, bower_components, dist, and any .dirs
 //This enables users to create any directory structure they desire.
-var createFolderGlobs = function(fileTypePatterns) {
+var createFolderGlobs = function(fileTypePatterns, withSrcPrefix) {
     fileTypePatterns = Array.isArray(fileTypePatterns) ? fileTypePatterns : [fileTypePatterns];
     var ignore = ['node_modules', 'bower_components', 'dist', 'temp'];
     var fs = require('fs');
@@ -22,7 +22,7 @@ var createFolderGlobs = function(fileTypePatterns) {
                 return null;
             } else {
                 return fileTypePatterns.map(function(pattern) {
-                    return file + '/**/' + pattern;
+                    return (withSrcPrefix ? 'src/' : '') + file + '/**/' + pattern;
                 });
             }
         })
@@ -54,7 +54,7 @@ module.exports = function(grunt) {
                     livereloadOnError: false,
                     spawn: false
                 },
-                files: [createFolderGlobs(['*.js', '*.less', '*.html']), '!_SpecRunner.html', '!.grunt'],
+                files: [createFolderGlobs(['*.js', '*.less', '*.html'], true), '!_SpecRunner.html', '!.grunt'],
                 tasks: [] //all the tasks are run dynamically during the watch event handler
             }
         },
@@ -78,7 +78,7 @@ module.exports = function(grunt) {
             production: {
                 options: {},
                 files: {
-                    'temp/app.css': 'src/app.less'
+                    'temp/app.css': 'src/app.module.less'
                 }
             }
         },
@@ -86,10 +86,11 @@ module.exports = function(grunt) {
             main: {
                 options: {
                     module: pkg.name,
-                    htmlmin: '<%%= htmlmin.main.options %>'
+                    htmlmin:'<%= htmlmin.main.options %>'
                 },
-                src: [createFolderGlobs('*.html'), '!index.html', '!_SpecRunner.html'],
-                dest: 'temp/templates.js'
+                src: [createFolderGlobs('*.html'),'!index.html','!_SpecRunner.html'],
+                dest: 'temp/templates.js',
+                cwd: 'src/'
             }
         },
         copy: {
@@ -103,7 +104,13 @@ module.exports = function(grunt) {
                         expand: true,
                         cwd: 'src/'
                     },
-                    {src: ['bower_components/bootstrap/fonts/**'], dest: 'dist/', filter: 'isFile', expand: true, cwd: 'src/'}
+                    {
+                        src: ['bower_components/bootstrap/fonts/**'],
+                        dest: 'dist/',
+                        filter: 'isFile',
+                        expand: true,
+                        cwd: 'src/'
+                    }
                     //{src: ['src/bower_components/angular-ui-utils/ui-utils-ieshiv.min.js'], dest: 'dist/'},
                     //{src: ['src/bower_components/select2/*.png','src/bower_components/select2/*.gif'], dest:'dist/css/',flatten:true,expand:true},
                     //{src: ['src/bower_components/angular-mocks/angular-mocks.js'], dest: 'dist/'}
@@ -115,7 +122,12 @@ module.exports = function(grunt) {
                 options: {
                     read: [
                         {selector: 'script[data-concat!="false"]', attribute: 'src', writeto: 'appjs', isPath: true},
-                        {selector: 'link[rel="stylesheet"][data-concat!="false"]', attribute: 'href', writeto: 'appcss', isPath: true}
+                        {
+                            selector: 'link[rel="stylesheet"][data-concat!="false"]',
+                            attribute: 'href',
+                            writeto: 'appcss',
+                            isPath: true
+                        }
                     ]
                 },
                 src: 'src/index.html'
@@ -134,13 +146,13 @@ module.exports = function(grunt) {
         },
         cssmin: {
             main: {
-                src: ['temp/app.css', '<%%= dom_munger.data.appcss %>'],
+                src: ['temp/app.css', '<%= dom_munger.data.appcss %>'],
                 dest: 'dist/app.full.min.css'
             }
         },
         concat: {
             main: {
-                src: ['<%%= dom_munger.data.appjs %>', '<%%= ngtemplates.main.dest %>'],
+                src: ['<%= dom_munger.data.appjs %>', '<%= ngtemplates.main.dest %>'],
                 dest: 'temp/app.full.js'
             }
         },
@@ -190,9 +202,9 @@ module.exports = function(grunt) {
             options: {
                 frameworks: ['jasmine'],
                 files: [  //this files data is also updated in the watch handler, if updated change there too
-                    '<%%= dom_munger.data.appjs %>',
+                    '<%= dom_munger.data.appjs %>',
                     'src/bower_components/angular-mocks/angular-mocks.js',
-                    createFolderGlobs('*-spec.js')
+                    createFolderGlobs('*.spec.js', true)
                 ],
                 logLevel: 'ERROR',
                 reporters: ['mocha'],
@@ -226,7 +238,7 @@ module.exports = function(grunt) {
                     // Stops Grunt process if a test fails
                     keepAlive: false,
                     args: {
-                        specs: ['src/**/*-e2e.js']
+                        specs: ['src/**/*.e2e.js']
                     }
                 }
             },
@@ -246,9 +258,9 @@ module.exports = function(grunt) {
         'copy', 'htmlmin', 'clean:after'
     ]);
     grunt.registerTask('serve', ['dom_munger:read', 'jshint', 'connect', 'watch']);
-    grunt.registerTask('test', ['dom_munger:read', 'karma:all_tests']);
+    grunt.registerTask('test', ['dom_munger:read', 'karma:all_tests', 'e2e-test']);
 
-    grunt.registerTask('e2e-test', ['dom_munger:read', 'connect', 'protractor:e2e']);
+    grunt.registerTask('e2e-test', ['connect', 'protractor:e2e']);
 
     grunt.event.on('watch', function(action, filepath) {
         //https://github.com/gruntjs/grunt-contrib-watch/issues/156
@@ -266,14 +278,14 @@ module.exports = function(grunt) {
             //find the appropriate unit test for the changed file
 
             //changed file was a test
-            var match = filepath.match(/\-spec|\-e2e/);
-            if(match && match[0] === '-spec') {
+            var match = filepath.match(/\.spec|\.e2e/);
+            if(match && match[0] === '.spec') {
                 spec = filepath;
-            } else if(match && match[0] === '-e2e') {
+            } else if(match && match[0] === '.e2e') {
                 e2e = filepath;
             } else if(!match) {
-                spec = filepath.replace('.js', '-spec.js');
-                e2e = filepath.replace('.js', '-e2e.js');
+                spec = filepath.replace('.js', '.spec.js');
+                e2e = filepath.replace('.js', '.e2e.js');
             }
 
             //if the spec exists then lets run it

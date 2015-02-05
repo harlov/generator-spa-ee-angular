@@ -70,7 +70,7 @@ If a given template property is missing, the default templates will be used.
 
 ## Template Directories
 
-Each template directory can contain any number of files for a given subgenerator.  Each file will be read, run through the template engine, and then saved to the user specified destination.  The name of the destination file will be derived from the name of the template file by replacing the type word (partial/directive/filter/service) with the name of the component.  In other words, `partial-spec.js` becomes `whatever-spec.js`.
+Each template directory can contain any number of files for a given subgenerator.  Each file will be read, run through the template engine, and then saved to the user specified destination.  The name of the destination file will be derived from the name of the template file by replacing the type word (partial/directive/filter/service) with the name of the component.  In other words, `partial.spec.js` becomes `whatever.spec.js`.
 
 ### Template variables
 

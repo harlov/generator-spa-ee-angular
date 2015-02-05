@@ -53,9 +53,16 @@ PartialGenerator.prototype.askFor = function askFor() {
 
 PartialGenerator.prototype.files = function files() {
 
+    var configName = 'partialWithRoute';
+    var defaultDir = 'templates/withRoute';
+    if(!this.route || this.route.length === 0) {
+        configName = 'partialWithoutRoute';
+        defaultDir = 'templates/withoutRoute';
+    }
+
     this.ctrlname = _.camelize(_.classify(this.name)) + 'Ctrl';
 
-    ccUtils.processTemplates(this.name, ccUtils.getDirWithSrc(this.dir), 'partial', this, null, null, this.module);
+    ccUtils.processTemplates(this.name, ccUtils.getDirWithSrc(this.dir), 'partial', this, defaultDir, configName, this.module);
 
     if(this.route && this.route.length > 0) {
         var partialUrl = this.dir + this.name + '.html';
