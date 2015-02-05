@@ -83,19 +83,25 @@ Getting Started
 
 Prerequisites: Node, Grunt, Yeoman, and Bower.  Once Node is installed, do:
 
-    npm install -g grunt-cli yo bower
+    sudo npm install -g grunt-cli yo bower
 
 Next, install this generator:
 
-    # for global use, otherwise install in project
-    npm install -g generator-cc-angular
+    # for global use, otherwise install in projecc
+    sudo npm install -g generator-cc-angular
 
 To create a project:
 
     mkdir MyNewAwesomeApp
     cd MyNewAwesomeApp
-    npm install generator-cc-angular    #if not installed globally
+
+    #if not installed globally, install it in the project
+    npm install generator-cc-angular
+
+    #we need webdriver for protractor
     ./node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update
+
+    # let's generate the app
     yo cc-angular
 
 Grunt Tasks
