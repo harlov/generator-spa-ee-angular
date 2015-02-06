@@ -47,7 +47,7 @@ exports.processTemplates = function(name, dir, type, that, defaultDir, configNam
             return template[0] !== '.';
         })
         .each(function(template) {
-            var customTemplateName = template.replace(type, name);
+            var customTemplateName = template.replace(type, (name + '.' + type));
             var templateFile = path.join(templateDirectory, template);
             //create the file
             that.template(templateFile, path.join(dir, customTemplateName));
@@ -90,6 +90,7 @@ exports.injectRoute = function(moduleFile, name, ctrl, ctrlAs, route, routeUrl, 
 
     routeUrl = routeUrl.replace(/\\/g, '/');
     routeUrl = routeUrl.replace(/src\//g, '');
+    routeUrl = routeUrl.replace('.html', '.partial.html');
 
 
     var code = "" +
@@ -167,7 +168,7 @@ exports.askForModule = function(type, that, cb) {
         if(i === 0) {
             module = mainModule;
         } else {
-            module = ngParseModule.parse(modules[i - 1].file);
+            module = ngParseModule.parse((modules[i - 1].file).replace('.js', '.module.js'));
         }
 
         cb.bind(that)(module);

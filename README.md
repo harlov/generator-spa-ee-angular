@@ -74,9 +74,9 @@ In this example, the user has chosen to group the app into an `admin` folder, a 
             my-service.spec.js ......... example service unit test
             my-service2.js ............. example service
             my-service2.spec.js ........ example service unit test
+        /_bc................ 3rd party libraries managed by bower
         /img ........................... images (not created by default but included in /dist if added)
-        /dist .......................... distributable version of app built using grunt and Gruntfile.js
-        /bower_component................ 3rd party libraries managed by bower
+    /dist .......................... distributable version of app built using grunt and Gruntfile.js
     /node_modules .................. npm managed libraries used by grunt
 
 Getting Started
@@ -99,11 +99,12 @@ To create a project:
     #if not installed globally, install it in the project
     npm install generator-cc-angular
 
+    # let's generate the app
+    yo cc-angular
+
     #we need webdriver for protractor
     ./node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update
 
-    # let's generate the app
-    yo cc-angular
 
 Grunt Tasks
 -------------
@@ -147,7 +148,7 @@ Submodules
 -------------
 
 Submodules allow you to more explicitly separate parts of your application.  Use the `yo cc-angular:module my-module` command and specify a new subdirectory to place the module into.  Once you've created a submodule, running other subgenerators will now prompt you to select the module in which to place the new component.
-Also submodules have the app.core.module as dependency, because this module manages all 3thrd party dependencies
+Also submodules have the appCore.module as dependency, because this module manages all 3thrd party dependencies
 
 Preconfigured Libraries
 -------------
