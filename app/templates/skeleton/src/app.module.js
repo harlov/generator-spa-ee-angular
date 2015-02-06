@@ -1,25 +1,11 @@
 (function(angular) {
     'use strict';
-    angular.module('<%= _.camelize(appname) %>', ['ui.router']);
 
-    angular.module('<%= _.camelize(appname) %>').config(function($stateProvider, $urlRouterProvider) {
+    /**
+     * here is the right place to configure shared modules like app.core and feature-module
+     * app.core defines the dependencies to angular and third party modules
+     * any feature module should depend on app.core and possible other shared modules
+     */
+    angular.module('<%= _.camelize(appname) %>', ['app.core']);
 
-        /* Add New States Above */
-        $urlRouterProvider.otherwise('/home');
-
-    });
-
-    angular.module('<%= _.camelize(appname) %>').run(function($rootScope) {
-
-        $rootScope.safeApply = function(fn) {
-            var phase = $rootScope.$$phase;
-            if(phase === '$apply' || phase === '$digest') {
-                if(fn && (typeof(fn) === 'function')) {
-                    fn();
-                }
-            } else {
-                this.$apply(fn);
-            }
-        };
-    });
 })(angular);
