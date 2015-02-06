@@ -31,6 +31,7 @@ Features
 * Includes Yeoman subgenerators for directives, services, partials, filters, and modules.
 * Integrates LESS and includes Bootstrap via the source LESS files allowing you to reuse Bootstrap vars/mixins/etc.
 * Easily Testable - Each sub-generator creates a skeleton unit test.  Unit tests can be run via `grunt test` and they run automatically during the grunt watch that is active during `grunt serve`.
+    * partials generate a e2e skeleton test
 
 Directory Layout
 -------------
@@ -87,7 +88,7 @@ Prerequisites: Node, Grunt, Yeoman, and Bower.  Once Node is installed, do:
 
 Next, install this generator:
 
-    # for global use, otherwise install in projecc
+    # for global use, otherwise install in project
     sudo npm install -g generator-cc-angular
 
 To create a project:
@@ -146,6 +147,7 @@ Submodules
 -------------
 
 Submodules allow you to more explicitly separate parts of your application.  Use the `yo cc-angular:module my-module` command and specify a new subdirectory to place the module into.  Once you've created a submodule, running other subgenerators will now prompt you to select the module in which to place the new component.
+Also submodules have the app.core.module as dependency, because this module manages all 3thrd party dependencies
 
 Preconfigured Libraries
 -------------
