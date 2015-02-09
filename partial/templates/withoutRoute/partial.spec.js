@@ -2,17 +2,17 @@ describe('<%= ctrlname %>', function() {
 
     beforeEach(module('<%= appname %>'));
 
-    var scope, ctrl;
+    var $scope, <%= controllerAs %>;
 
-    beforeEach(inject(function($rootScope, $controller) {
-        scope = $rootScope.$new();
-        ctrl = $controller('<%= ctrlname %>', {$scope: scope});
+    beforeEach(inject(function(_$rootScope_, _$controller_) {
+        $scope = _$rootScope_.$new();
+        <%= controllerAs %> = _$controller_('<%= ctrlname %>', {$scope: $scope});
     }));
 
-    it('should ...', inject(function() {
-
+    it('should ...', function() {
+        //expect(<%= controllerAs %>.myModel).toEqual();
         expect(1).toEqual(1);
 
-    }));
+    });
 
 });

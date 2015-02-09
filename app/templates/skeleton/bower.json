@@ -19,6 +19,7 @@
         "angular-mocks": "~1.3",
         "angular-sanitize": "~1.3",
         "angular-ui-utils": "~0.2",
+        "angular-bindonce": "~0.3",
         "moment": "*",
         "toastr": "~2.1",
         "less.js": "~1.6",
