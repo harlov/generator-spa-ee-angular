@@ -41,6 +41,7 @@ In this example, the user has chosen to group the app into an `admin` folder, a 
 
 
     Gruntfile.js ................... Grunt build file
+    /bower_components............... 3rd party libraries managed by bower
     /src ........................... folder for all app code
         app.less ....................... main app-wide styles
         app.js ......................... angular module initialization and route setup
@@ -74,7 +75,6 @@ In this example, the user has chosen to group the app into an `admin` folder, a 
             my-service.spec.js ......... example service unit test
             my-service2.js ............. example service
             my-service2.spec.js ........ example service unit test
-        /_bc................ 3rd party libraries managed by bower
         /img ........................... images (not created by default but included in /dist if added)
     /dist .......................... distributable version of app built using grunt and Gruntfile.js
     /node_modules .................. npm managed libraries used by grunt
@@ -182,7 +182,8 @@ Importantly, grunt-dom-munger uses CSS attribute selectors to manage the parsing
 
 Release History
 -------------
-* 02/04/15 - v0.9.6 - included bindonce, some more styleguide compliance, using logger and exception handler from
+* 02/09/15 - v0.9.8 - moved src/_bc to bower_components for a clearer separation of third party and own code
+* 02/09/15 - v0.9.6 - included bindonce, some more styleguide compliance, using logger and exception handler from
 john papa, coverage report
 * 02/04/15 - v0.9.1 - now "reasonably tested" ;-), fixed some "src dir" - bugs
 * 02/04/15 - v0.9.0 - fairly tested fork of cg-angular with all the changes mentioned above
