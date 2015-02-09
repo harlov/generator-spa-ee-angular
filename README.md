@@ -2,15 +2,15 @@
 
 >Yeoman Generator for Enterprise Angular Projects
 
-This generator is a fork of [https://github.com/cgross/generator-cg-angular](cg-angular), which is an amazing project!
+This generator is a fork of [cg-angular](https://github.com/cgross/generator-cg-angular), which is an amazing project!
 It did not perfectly fit to my needs so I improved it for my purposes:
 
 * clearer separation of config and sources by putting all the application-code in the `src` folder
 * integration of `protractor`, executing matching e2e tests just like the unit tests
 * updated all the bower-components and npm libs. Now using angular 1.3.x
 * using `ui.router` by default
-* try to stick to the very good [https://github.com/johnpapa/angularjs-styleguide#services](AngularJS Style Guide)
-from [https://github.com/johnpapa](JohnPapa), e.g.:
+* try to stick to the very good [AngularJS Style Guide](https://github.com/johnpapa/angularjs-styleguide#services)
+from [JohnPapa](https://github.com/johnpapa), e.g.:
     * No globals, put everything in closures
     * Use ControllerAs-Syntax
     * Use Named functions instead of anonymous
