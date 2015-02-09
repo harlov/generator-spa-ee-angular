@@ -1,6 +1,6 @@
 {
     "name": "generator-cc-angular",
-    "version": "0.9.8",
+    "version": "0.9.9",
     "description": "Yeoman Generator for Enterprise Angular projects - the complete stress free package.",
     "keywords": [
         "yeoman-generator",
