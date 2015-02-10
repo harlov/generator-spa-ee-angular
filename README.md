@@ -155,7 +155,10 @@ Also submodules have the appCore.module as dependency, because this module manag
 Preconfigured Libraries
 -------------
 
-The new app will have a handful of preconfigured libraries included.  This includes Angular 1.2, Bootstrap 3, AngularUI Bootstrap, AngularUI Utils, FontAwesome 4, JQuery 2, Underscore 1.5, LESS 1.6, and Moment 2.5.  You may of course add to or remove any of these libraries.  But the work to integrate them into the app and into the build process has already been done for you.
+The new app will have a handful of preconfigured libraries included.  This includes Angular 1.3, Bootstrap 3,
+AngularUI Utils, FontAwesome 4, JQuery 2, Underscore 1.7, LESS 1.6, and Moment 2.5.  You may of course add to or
+remove any of these libraries.
+But the work to integrate them into the app and into the build process has already been done for you.
 
 Build Process
 -------------
@@ -180,6 +183,12 @@ Importantly, grunt-dom-munger uses CSS attribute selectors to manage the parsing
 * To prevent a script or stylesheet from being included in concatenation, put a `data-concat="false"` attribute on the link or script tag.  This is currently applied for the `livereload.js` and `less.js` script tags.
 
 * To prevent a script or link tag from being removed from the finalized `index.html`, use a `data-remove="false"` attribute.
+
+Thanks
+-------
+Thanks to [leanovate.de](http://www.leanovate.de) I'm able to spend 10 - 15% of my time to work on open source
+ projects. Leanovate rocks!
+
 
 
 Release History
