@@ -31,6 +31,10 @@ PartialGenerator.prototype.askFor = function askFor() {
             message: 'Enter your route url (i.e. /mypartial/:id).  If you don\'t want a route added for you, leave this empty.'
         },
         {
+            name: 'state',
+            message: 'Enter a state-name. Leave empty, if you want state name to be route. Will be ignored, if route is empty.'
+        },
+        {
             name: 'controllerAs',
             message: 'What should be the variable name for the controller (controllerAs)'
         }
@@ -46,6 +50,7 @@ PartialGenerator.prototype.askFor = function askFor() {
         this.route = url.resolve('', props.route);
 
         this.controllerAs = _.camelize(props.controllerAs);
+        this.stateName = props.state;
 
         ccUtils.askForModuleAndDir('partial', this, true, cb);
     }.bind(this));
@@ -66,7 +71,7 @@ PartialGenerator.prototype.files = function files() {
 
     if(this.route && this.route.length > 0) {
         var partialUrl = this.dir + this.name + '.html';
-        ccUtils.injectRoute(this.module.file, this.name, this.ctrlname, this.controllerAs, this.route, partialUrl, this);
+        ccUtils.injectRoute(this.module.file, (this.stateName || this.name), this.ctrlname, this.controllerAs, this.route, partialUrl, this);
     }
 
 };

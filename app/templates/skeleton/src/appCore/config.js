@@ -5,7 +5,6 @@
 
     core.config(toastrConfig);
 
-    toastrConfig.$inject = ['toastr'];
     /* @ngInject */
     function toastrConfig(toastr) {
         toastr.options.timeOut = 4000;
@@ -21,7 +20,6 @@
 
     core.config(configure);
 
-    configure.$inject = ['$logProvider', 'exceptionHandlerProvider'];
     /* @ngInject */
     function configure($logProvider, exceptionHandlerProvider) {
         if ($logProvider.debugEnabled) {

@@ -13,5 +13,5 @@ exports.config = {
     },
 
     // change this to your url, if you don't use grunt-connect
-    baseUrl: 'http://localhost:9001'
+    baseUrl: 'http://localhost:9001/src'
 };

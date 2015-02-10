@@ -11,7 +11,7 @@
         };
     });
 
-    function link<%= _.camelize(name) %>(scope, element, attrs, fn) {
+    function link<%= _.camelize(name) %>(scope, elem, attrs, fn) {
 
     }
 })(angular);
