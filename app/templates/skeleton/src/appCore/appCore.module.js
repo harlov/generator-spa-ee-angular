@@ -7,7 +7,6 @@
             'ngSanitize',
             'blocks.exception',
             'blocks.logger',
-            'ui.router',
-            'pasvaz.bindonce'
+            'ui.router'
         ]);
 })(angular);

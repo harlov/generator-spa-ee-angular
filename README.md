@@ -193,6 +193,7 @@ Thanks to [leanovate.de](http://www.leanovate.de) I'm able to spend 10 - 15% of 
 
 Release History
 -------------
+* 02/10/15 - v0.9.11 - removed bindonce, because of native support for one time bindings since 1.3
 * 02/09/15 - v0.9.8 - moved src/_bc to bower_components for a clearer separation of third party and own code
 * 02/09/15 - v0.9.6 - included bindonce, some more styleguide compliance, using logger and exception handler from
 john papa, coverage report

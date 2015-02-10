@@ -1,6 +1,6 @@
 {
     "name": "generator-cc-angular",
-    "version": "0.9.10",
+    "version": "0.9.11",
     "description": "ATDD/TDD of Enterprise AngularJS projects with pleasure.",
     "keywords": [
         "yeoman-generator",
