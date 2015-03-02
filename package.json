@@ -1,12 +1,14 @@
 {
     "name": "generator-cc-angular",
-    "version": "0.9.11",
-    "description": "ATDD/TDD of Enterprise AngularJS projects with pleasure.",
+    "version": "0.9.12",
+    "description": "BDD of Enterprise AngularJS projects with pleasure.",
     "keywords": [
         "yeoman-generator",
-        "angular",
+        "angularjs",
         "protractor",
         "tdd",
+        "atdd",
+        "cucumber",
         "clean code"
     ],
     "homepage": "https://github.com/AnBauer/generator-cc-angular",

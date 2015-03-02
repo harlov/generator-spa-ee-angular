@@ -10,7 +10,6 @@ var ngParseModule = require('ng-parse-module');
 exports.JS_MARKER = "<!-- Add New Component JS Above -->";
 exports.LESS_MARKER = "/* Add Component LESS Above */";
 
-exports.ROUTE_MARKER = "/* Add New Routes Above */";
 exports.STATE_MARKER = "/* Add New States Above */";
 
 exports.addToFile = function(filename, lineToAdd, beforeMarker) {
@@ -47,7 +46,14 @@ exports.processTemplates = function(name, dir, type, that, defaultDir, configNam
             return template[0] !== '.';
         })
         .each(function(template) {
-            var customTemplateName = template.replace(type, (name + '.' + type));
+            var repl = '.' + type;
+            if(type === 'partial' && template.indexOf('.js') > -1) {
+                repl = '.controller';
+            } else if(type === 'partial' && template.indexOf('.feature')) {
+                repl = '';
+            }
+
+            var customTemplateName = template.replace(type, (name + repl));
             var templateFile = path.join(templateDirectory, template);
             //create the file
             that.template(templateFile, path.join(dir, customTemplateName));
@@ -86,22 +92,25 @@ exports.inject = function(filename, that, module) {
     }
 };
 
-exports.injectRoute = function(moduleFile, name, ctrl, ctrlAs, route, routeUrl, that) {
+exports.injectRoute = function(moduleFile, name, ctrl, ctrlAs, route, partialUrl, title, that) {
 
-    routeUrl = routeUrl.replace(/\\/g, '/');
-    routeUrl = routeUrl.replace(/src\//g, '');
-    routeUrl = routeUrl.replace('.html', '.partial.html');
+    partialUrl = partialUrl.replace(/\\/g, '/');
+    partialUrl = partialUrl.replace(/src\//g, '');
+    partialUrl = partialUrl.replace('.html', '.partial.html');
 
 
     var code = "" +
-        "$stateProvider.state('" + name + "', {\n" +
-        "               url: '" + route + "',\n" +
-        "               templateUrl: '" + routeUrl + "',\n" +
-        "               controller: '" + ctrl + "',\n" +
-        "               controllerAs: '" + ctrlAs + "'\n" +
-        "       });";
+        "   {\n" +
+        "               state: '" + name + "',\n" +
+        "               config: {\n" +
+        "                       url: '" + route + "',\n" +
+        "                       templateUrl: '" + partialUrl + "',\n" +
+        "                       controller: '" + ctrl + "',\n" +
+        "                       controllerAs: '" + ctrlAs + "',\n" +
+        "                       title: '" + title + "'\n" +
+        "              }\n" +
+        "        },";
     exports.addToFile(moduleFile, code, exports.STATE_MARKER);
-
 
     that.log.writeln(chalk.green(' updating') + ' %s', path.basename(moduleFile));
 

@@ -3,7 +3,10 @@
 
     angular.module('<%= appname %>').controller('<%= ctrlname %>', <%= ctrlname %>);
 
-    function <%= ctrlname %>($scope) {
+    function <%= ctrlname %>() {
         var <%= controllerAs %> = this;
+
     }
+
+
 })(angular);

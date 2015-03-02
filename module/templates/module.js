@@ -2,13 +2,18 @@
     'use strict';
 
     angular.module('<%= _.camelize(name) %>', ['appCore']);
-    angular.module('<%= _.camelize(name) %>').config(config);
+    angular.module('<%= _.camelize(name) %>').run(<%= _.camelize(name) + 'Run' %>);
 
+    /* @ngInject */
+    function <%= _.camelize(name) + 'Run' %>(routerHelper) {
+        routerHelper.configureStates(getStates());
+    }
 
-    function config($stateProvider, $urlRouterProvider) {
+    function getStates() {
+        return [
 
-        /* Add New States Above */
-
+            /* Add New States Above */
+        ];
     }
 
 })(angular);

@@ -3,16 +3,22 @@
 
     angular
         .module('appCore')
-        .config(appConfig);
+        .run(appRun);
 
-    function appConfig($stateProvider, $urlRouterProvider) {
-        $urlRouterProvider.otherwise('/404');
+    /* @ngInject */
+    function appRun(routerHelper) {
+        var states = [
+            {
+                state: '404',
+                config: {
+                    url: '/404',
+                    templateUrl: 'appCore/404.html',
+                    title: '404'
+                }
+            }
+        ];
 
-        $stateProvider.state('404', {
-            url: '/404',
-            templateUrl: 'appCore/404.html',
-            title: '404'
-        });
+        routerHelper.configureStates(states);
     }
 
 })(angular);

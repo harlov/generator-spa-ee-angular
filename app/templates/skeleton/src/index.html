@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="<%= _.camelize(appname) %>">
 <head>
-    <title></title>
+    <title ng-bind="title"></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <link href="app.module.less" type="text/css" rel="stylesheet/less">
@@ -45,6 +45,10 @@
 
 <script src="blocks/logger/logger.module.js"></script>
 <script src="blocks/logger/logger.js"></script>
+
+<script src="blocks/router/router.module.js"></script>
+<script src="blocks/router/router-helper.provider.js"></script>
+
 
 <script src="appCore/appCore.module.js"></script>
 <script src="appCore/config.js"></script>

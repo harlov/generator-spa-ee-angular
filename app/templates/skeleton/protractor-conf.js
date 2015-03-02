@@ -1,3 +1,4 @@
+require('hide-stack-frames-from')('cucumber');
 exports.config = {
     directConnect: true,
 
@@ -13,5 +14,12 @@ exports.config = {
     },
 
     // change this to your url, if you don't use grunt-connect
-    baseUrl: 'http://localhost:9001/src'
+    baseUrl: 'http://localhost:9002/src',
+
+    framework: 'cucumber',
+    cucumberOpts: {
+        require: ['features/**/*.js'],
+        format: 'pretty'
+    }
+
 };

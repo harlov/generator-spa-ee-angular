@@ -26,6 +26,10 @@
         "karma-mocha-reporter": "~0.3",
         "karma-phantomjs-launcher": "~0.1",
         "karma-coverage": "~0.2",
-        "load-grunt-tasks": "~3"
+        "load-grunt-tasks": "~3",
+        "chai-as-promised": "~4",
+        "cucumber": "~0.4",
+        "hide-stack-frames-from": "*"
+
     }
 }

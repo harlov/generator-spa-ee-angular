@@ -42,8 +42,12 @@ module.exports = function(grunt) {
         connect: {
             main: {
                 options: {
-                    port: '9001',
-                    open: 'http://localhost:9001/src/'
+                    port: '9001'
+                }
+            },
+            test: {
+                options: {
+                    port: '9002'
                 }
             }
         },
@@ -54,7 +58,7 @@ module.exports = function(grunt) {
                     livereloadOnError: false,
                     spawn: false
                 },
-                files: [createFolderGlobs(['*.js', '*.less', '*.html'], true), '!_SpecRunner.html', '!.grunt'],
+                files: [createFolderGlobs(['*.js', '*.less', '*.html', '*.feature'], true), '!_SpecRunner.html', '!.grunt'],
                 tasks: [] //all the tasks are run dynamically during the watch event handler
             }
         },
@@ -63,7 +67,7 @@ module.exports = function(grunt) {
                 options: {
                     jshintrc: '.jshintrc'
                 },
-                src: createFolderGlobs('*.js')
+                src: createFolderGlobs('*.js', true)
             }
         },
         clean: {
@@ -243,7 +247,7 @@ module.exports = function(grunt) {
                     // Stops Grunt process if a test fails
                     keepAlive: false,
                     args: {
-                        specs: ['src/**/*.e2e.js']
+                        specs: ['src/**/*.feature']
                     }
                 }
             },
@@ -265,32 +269,34 @@ module.exports = function(grunt) {
     grunt.registerTask('serve', ['dom_munger:read', 'jshint', 'connect', 'watch']);
     grunt.registerTask('test', ['dom_munger:read', 'karma:all_tests', 'e2e-test']);
 
-    grunt.registerTask('e2e-test', ['connect', 'protractor:e2e']);
+    grunt.registerTask('e2e-test', ['connect:test', 'protractor:e2e']);
 
     grunt.event.on('watch', function(action, filepath) {
         //https://github.com/gruntjs/grunt-contrib-watch/issues/156
 
         var tasksToRun = [];
 
-        if(filepath.lastIndexOf('.js') !== -1 && filepath.lastIndexOf('.js') === filepath.length - 3) {
+        if(filepath.match(/\.js|\.spec|\.feature/)) {
 
             //lint the changed js file
+            if(filepath.match(/\.js/)) {
             grunt.config('jshint.main.src', filepath);
             tasksToRun.push('jshint');
+            }
 
             var spec = false;
             var e2e = false;
             //find the appropriate unit test for the changed file
 
             //changed file was a test
-            var match = filepath.match(/\.spec|\.e2e/);
+            var match = filepath.match(/\.spec|\.feature/);
             if(match && match[0] === '.spec') {
                 spec = filepath;
-            } else if(match && match[0] === '.e2e') {
+            } else if(match && match[0] === '.feature') {
                 e2e = filepath;
             } else if(!match) {
                 spec = filepath.replace('.js', '.spec.js');
-                e2e = filepath.replace('.js', '.e2e.js');
+                e2e = filepath.split('.').slice(0, -2) + '.feature';
             }
 
             //if the spec exists then lets run it

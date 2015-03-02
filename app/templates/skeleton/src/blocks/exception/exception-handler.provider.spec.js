@@ -9,9 +9,10 @@ describe('blocks.exception', function() {
     beforeEach(module('appCore', function(exceptionHandlerProvider) {
         exceptionHandlerProv = exceptionHandlerProvider;
     }));
-    beforeEach(inject(function(_$rootScope_, _$httpBackend_) {
+    beforeEach(inject(function(_$rootScope_, _$httpBackend_, _$templateCache_) {
         $rootScope = _$rootScope_;
         $httpBackend = _$httpBackend_;
+        _$templateCache_.put('appCore/404.html', '404');
     }));
 
     beforeEach(function() {

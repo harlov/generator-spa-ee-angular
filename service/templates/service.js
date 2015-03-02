@@ -5,6 +5,6 @@
 
     function <%= _.camelize(name) %>() {
 
-    });
+    };
 
 })(angular);

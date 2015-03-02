@@ -73,6 +73,7 @@
         "by": true,
         "browser": true,
         "protractor": true,
-        "exports": true
+        "exports": true,
+        "jasmine": true
     }
 }

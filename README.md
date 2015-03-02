@@ -1,6 +1,6 @@
 #generator-cc-angular
 
->ATDD/TDD of Enterprise AngularJS projects with pleasure.
+>BDD of Enterprise AngularJS projects with pleasure.
 
 This generator is a fork of [cg-angular](https://github.com/cgross/generator-cg-angular), which is an amazing project!
 It did not perfectly fit to my needs so I improved it for my purposes:
@@ -36,53 +36,14 @@ Features
 * Integrates LESS and includes Bootstrap via the source LESS files allowing you to reuse Bootstrap vars/mixins/etc.
 * Easily Testable - Each sub-generator creates a skeleton unit test.  Unit tests can be run via `grunt test` and they run automatically during the grunt watch that is active during `grunt serve`.
     * partials with routes generate an e2e skeleton test
-
+    * e2e tests are written in Gherkin, cucumber.js is included.
 
 Directory Layout
 -------------
-All subgenerators prompt the user to specify where to save the new files.  Thus you can create any directory structure you desire, including nesting.  The generator will create a handful of files in the root of your project including `index.html`, `app.js`, and `app.less`.  You determine how the rest of the project will be structured.
+All subgenerators prompt the user to specify where to save the new files.  Thus you can create any directory structure you desire, including nesting.
+The generator will create a handful of files in the root of your project including `index.html`, `app.js`, and `app.less`.
+You determine how the rest of the project will be structured but the generator makes educated suggestions.
 
-In this example, the user has chosen to group the app into an `admin` folder, a `search` folder, and a `service` folder.
-
-
-    Gruntfile.js ................... Grunt build file
-    /bower_components............... 3rd party libraries managed by bower
-    /src ........................... folder for all app code
-        app.less ....................... main app-wide styles
-        app.js ......................... angular module initialization and route setup
-        index.html ..................... main HTML file
-        /admin ......................... example admin module folder
-          admin.js ..................... admin module initialization and route setup
-          admin.less ................... admin module LESS
-          /admin-directive1 ............ angular directives folder
-            admin-directive1.js ........ example simple directive
-            admin-directive1.spec.js.... example simple directive unit test
-          /admin-directive2 ............ example complex directive (contains external partial)
-            admin-directive2.js ........ complex directive javascript
-            admin-directive2.html ...... complex directive partial
-            admin-directive2.less ...... complex directive LESS
-            admin-directive2.spec.js ... complex directive unit test
-          /admin-partial ............... example partial
-            admin-partial.html ......... example partial html
-            admin-partial.js ........... example partial controller
-            admin-partial.less ......... example partial LESS
-            admin-partial.spec.js ...... example partial unit test
-        /search ........................ example search component folder
-          my-filter.js ................. example filter
-          my-filter.spec.js ............ example filter unit test
-          /search-partial .............. example partial
-            search-partial.html ........ example partial html
-            search-partial.js .......... example partial controller
-            search-partial.less ........ example partial LESS
-            search-partial.spec.js ..... example partial unit test
-        /service ....................... angular services folder
-            my-service.js .............. example service
-            my-service.spec.js ......... example service unit test
-            my-service2.js ............. example service
-            my-service2.spec.js ........ example service unit test
-        /img ........................... images (not created by default but included in /dist if added)
-    /dist .......................... distributable version of app built using grunt and Gruntfile.js
-    /node_modules .................. npm managed libraries used by grunt
 
 Getting Started
 -------------
@@ -184,6 +145,13 @@ Importantly, grunt-dom-munger uses CSS attribute selectors to manage the parsing
 
 * To prevent a script or link tag from being removed from the finalized `index.html`, use a `data-remove="false"` attribute.
 
+
+E2E Testing
+------------
+The generator comes with E2E tests in Gherkin, compiled to JS with cucumber.js. This makes it easy to elaborate these
+ tests as part of the "feature contract" together with a non tech person (product owner, customer...).
+
+
 Thanks
 -------
 Thanks to [leanovate.de](http://www.leanovate.de) I'm able to spend 10 - 15% of my time to work on open source
@@ -193,6 +161,7 @@ Thanks to [leanovate.de](http://www.leanovate.de) I'm able to spend 10 - 15% of 
 
 Release History
 -------------
+* 03/02/15 - v0.9.12 - switched to Gherkin / cucumber.js for E2E tests, some bug fixes, added route-helper
 * 02/10/15 - v0.9.11 - removed bindonce, because of native support for one time bindings since 1.3
 * 02/09/15 - v0.9.8 - moved src/_bc to bower_components for a clearer separation of third party and own code
 * 02/09/15 - v0.9.6 - included bindonce, some more styleguide compliance, using logger and exception handler from
