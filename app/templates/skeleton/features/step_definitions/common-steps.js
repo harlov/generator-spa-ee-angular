@@ -9,7 +9,7 @@ var expect = chai.expect;
 
 var myStepDefinitionsWrapper = function() {
     this.Given(/^I am on the "([^"]*)" page$/, function(arg1, callback) {
-        browser.get('#' + arg1);
+        browser.get(arg1);
         callback();
     });
 

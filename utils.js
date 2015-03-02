@@ -96,8 +96,6 @@ exports.injectRoute = function(moduleFile, name, ctrl, ctrlAs, route, partialUrl
 
     partialUrl = partialUrl.replace(/\\/g, '/');
     partialUrl = partialUrl.replace(/src\//g, '');
-    partialUrl = partialUrl.replace('.html', '.partial.html');
-
 
     var code = "" +
         "   {\n" +

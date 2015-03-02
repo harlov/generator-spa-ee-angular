@@ -29,7 +29,8 @@
         "load-grunt-tasks": "~3",
         "chai-as-promised": "~4",
         "cucumber": "~0.4",
-        "hide-stack-frames-from": "*"
+        "hide-stack-frames-from": "*",
+        "connect-modrewrite": "~0.7"
 
     }
 }

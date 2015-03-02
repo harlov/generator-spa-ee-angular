@@ -18,7 +18,7 @@
             }
         ];
 
-        routerHelper.configureStates(states);
+        routerHelper.configureStates(states, '/404');
     }
 
 })(angular);

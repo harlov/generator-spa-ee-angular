@@ -36,30 +36,77 @@ module.exports = function(grunt) {
 
     // load all grunt tasks
     require('load-grunt-tasks')(grunt);
+    var modRewrite = require('connect-modrewrite');
+
+    var mountFolder = function(connect, dir) {
+        return connect.static(require('path').resolve(dir));
+    };
+
+    /* configure rewrites for html5 mode */
+    var middlewares = function(connect) {
+        return [
+            modRewrite(['^[^\\.]*$ /index.html [L]']),
+            modRewrite(['^temp/app.css$ /temp/app.css [L]']),
+            connect().use(
+                '/temp',
+                mountFolder(connect, './temp')
+            ),
+            connect().use(
+                '/bower_components',
+                mountFolder(connect, './bower_components')
+            ),
+            mountFolder(connect, 'src')
+        ];
+    };
 
     // Project configuration.
     grunt.initConfig({
         connect: {
             main: {
                 options: {
-                    port: '9001'
+                    port: '9001',
+                    middleware: middlewares
                 }
             },
             test: {
                 options: {
-                    port: '9002'
+                    port: '9002',
+                    middleware: middlewares
                 }
             }
         },
         watch: {
-            main: {
+            options: {
+                spawn: false
+            },
+            livereload: {
                 options: {
                     livereload: true,
-                    livereloadOnError: false,
-                    spawn: false
+                    livereloadOnError: false
                 },
-                files: [createFolderGlobs(['*.js', '*.less', '*.html', '*.feature'], true), '!_SpecRunner.html', '!.grunt'],
+                files: [
+                    createFolderGlobs(['*.js', '*.html'], true),
+                    '!*.spec.js',
+                    '!_SpecRunner.html',
+                    'temp/app.css'
+                ]
+            },
+            main: {
+                files: [
+                    createFolderGlobs(['*.js', '*.html', '*.feature'], true), '!_SpecRunner.html', '!.grunt'
+                ],
                 tasks: [] //all the tasks are run dynamically during the watch event handler
+            },
+            less: {
+                files: [createFolderGlobs(['*.less'], true)],
+                tasks: ['less:development'],
+                options: {
+                    spawn: true
+                }
+
+        },
+            css: {
+                files: ['temp/app.css']
             }
         },
         jshint: {
@@ -84,15 +131,22 @@ module.exports = function(grunt) {
                 files: {
                     'temp/app.css': 'src/app.module.less'
                 }
+            },
+
+            development: {
+                options: {},
+                files: {
+                    "temp/app.css": "src/app.module.less" // destination file and source file
+            }
             }
         },
         ngtemplates: {
             main: {
                 options: {
                     module: pkg.name,
-                    htmlmin:'<%= htmlmin.main.options %>'
+                    htmlmin: '<%= htmlmin.main.options %>'
                 },
-                src: [createFolderGlobs('*.html'),'!index.html','!_SpecRunner.html'],
+                src: [createFolderGlobs('*.html'), '!index.html', '!_SpecRunner.html'],
                 dest: 'temp/templates.js',
                 cwd: 'src/'
             }
@@ -216,8 +270,8 @@ module.exports = function(grunt) {
                     'src/**/!(*.spec).js': ['coverage']
                 },
                 coverageReporter: {
-                    type : 'html',
-                    dir : 'coverage/'
+                    type: 'html',
+                    dir: 'coverage/'
                 }
             },
             all_tests: {
@@ -266,7 +320,7 @@ module.exports = function(grunt) {
         'jshint', 'clean:before', 'less', 'dom_munger', 'ngtemplates', 'cssmin', 'concat', 'ngAnnotate', 'uglify',
         'copy', 'htmlmin', 'clean:after'
     ]);
-    grunt.registerTask('serve', ['dom_munger:read', 'jshint', 'connect', 'watch']);
+    grunt.registerTask('serve', ['dom_munger:read', 'jshint', 'karma:during_watch', 'connect', 'less:development', 'watch']);
     grunt.registerTask('test', ['dom_munger:read', 'karma:all_tests', 'e2e-test']);
 
     grunt.registerTask('e2e-test', ['connect:test', 'protractor:e2e']);
@@ -280,8 +334,8 @@ module.exports = function(grunt) {
 
             //lint the changed js file
             if(filepath.match(/\.js/)) {
-            grunt.config('jshint.main.src', filepath);
-            tasksToRun.push('jshint');
+                grunt.config('jshint.main.src', filepath);
+                tasksToRun.push('jshint');
             }
 
             var spec = false;
