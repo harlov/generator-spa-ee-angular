@@ -1,6 +1,6 @@
 {
     "name": "generator-cc-angular",
-    "version": "0.9.13",
+    "version": "0.9.14",
     "description": "BDD of Enterprise AngularJS projects with pleasure.",
     "keywords": [
         "yeoman-generator",
@@ -27,14 +27,14 @@
         "test": "mocha"
     },
     "dependencies": {
-        "underscore": "~1.5",
-        "underscore.string": "~2.3",
+        "underscore": "~1.8",
+        "underscore.string": "~3.0",
         "yeoman-generator": "~0.16",
-        "chalk": "~0.4.0",
+        "chalk": "~1.0",
         "ng-parse-module": "~0.1.0"
     },
     "devDependencies": {
-        "mocha": "~1.10.0"
+        "mocha": "~2.1"
     },
     "engines": {
         "node": ">=0.8.0"

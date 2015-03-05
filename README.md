@@ -151,6 +151,11 @@ E2E Testing
 The generator comes with E2E tests in Gherkin, compiled to JS with cucumber.js. This makes it easy to elaborate these
  tests as part of the "feature contract" together with a non tech person (product owner, customer...).
 
+cc-angular generates .feature files for partial with a route and puts it in the same directory as the partial file.
+The step defninitions should be in a sub folder step_definitions of the partial folder, because this way, the whole
+module contains all files needed to be placed in another app created with cc-angular.
+
+Naming convention for step files: **PARTIALNAME.steps.js**
 
 Thanks
 -------
@@ -161,6 +166,7 @@ Thanks to [leanovate.de](http://www.leanovate.de) I'm able to spend 10 - 15% of 
 
 Release History
 -------------
+* 04/02/15 - v0.9.14 - bugfix for missing step files for e2e tests, step-file change triggers feature test
 * 03/02/15 - v0.9.13 - html5 mode enabled, less compiling in watch instead of browser based compiling, reload of css
 only on less change
 * 03/02/15 - v0.9.12 - switched to Gherkin / cucumber.js for E2E tests, some bug fixes, added route-helper
