@@ -1,6 +1,6 @@
 // Include in index.html so that app level exceptions are handled.
 // Exclude from testRunner.html which should run exactly what it wants to run
-(function() {
+(function(angular) {
     'use strict';
 
     angular
@@ -65,4 +65,4 @@
             logger.error(exception.message, errorData);
         };
     }
-})();
+})(angular);

@@ -1,5 +1,5 @@
 /* global toastr:false, moment:false */
-(function() {
+(function(angular, toastr, moment) {
     'use strict';
 
     angular

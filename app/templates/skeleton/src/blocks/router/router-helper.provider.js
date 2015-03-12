@@ -1,5 +1,5 @@
 /* Help configure the state-base ui.router */
-(function() {
+(function(angular) {
     'use strict';
 
     angular
@@ -98,4 +98,4 @@
             }
         }
     }
-})();
+})(angular);
