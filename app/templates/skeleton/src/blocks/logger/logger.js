@@ -42,4 +42,4 @@
             $log.warn('Warning: ' + message, data);
         }
     }
-}());
+}(angular));
