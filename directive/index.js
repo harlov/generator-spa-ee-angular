@@ -53,8 +53,8 @@ DirectiveGenerator.prototype.files = function files() {
         defaultDir = 'templates/complex';
     }
 
-    this.htmlPath = path.join(this.dir, this.name + '.html').replace(/\\/g, '/');
-    ;
+    this.htmlPath = path.join(this.dir, this.name + '.directive.html').replace(/\\/g, '/');
+    this.htmlPath = this.htmlPath.replace('src/', '');
 
     ccUtils.processTemplates(this.name, ccUtils.getDirWithSrc(this.dir), 'directive', this, defaultDir, configName, this.module);
 

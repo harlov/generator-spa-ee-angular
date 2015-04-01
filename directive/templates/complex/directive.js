@@ -3,7 +3,7 @@
 
     angular.module('<%= appname %>').directive('<%= _.camelize(name) %>', function() {
         return {
-            restrict: 'E',
+            restrict: 'EA',
             replace: true,
             scope: {},
             templateUrl: '<%= htmlPath %>',
