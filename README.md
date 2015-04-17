@@ -50,12 +50,12 @@ Getting Started
 
 Prerequisites: Node, Grunt, Yeoman, and Bower.  Once Node is installed, do:
 
-    sudo npm install -g grunt-cli yo bower
+    npm install -g grunt-cli yo bower
 
 Next, install this generator:
 
     # for global use, otherwise install in project
-    sudo npm install -g generator-cc-angular
+    npm install -g generator-cc-angular
 
 To create a project:
 
