@@ -13,5 +13,18 @@
      *
      */
     angular.module('<%= _.camelize(appname) %>', ['appCore']);
+    angular.module('<%= _.camelize(appname) %>').run(<%= _.camelize(appname) + 'Run' %>);
+
+    /* @ngInject */
+    function <%= _.camelize(appname) + 'Run' %>(routerHelper) {
+        routerHelper.configureStates(getStates());
+    }
+
+    function getStates() {
+        return [
+
+            /* Add New States Above */
+        ];
+    }
 
 })(angular);

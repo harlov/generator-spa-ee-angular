@@ -166,6 +166,7 @@ Thanks to [leanovate.de](http://www.leanovate.de) I'm able to spend 10 - 15% of 
 
 Release History
 -------------
+* 04/28/15 - v1.0.3 - fixed "adding partials to root module
 * 04/01/15 - v1.0.2 - fixed wrong template-url for directive
 * 03/25/15 - v1.0.1 - fixed bug in logger.js
 * 03/12/15 - v1.0.0 - fixed missing angular param in closure in some files
