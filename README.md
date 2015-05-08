@@ -22,6 +22,11 @@ It did not perfectly fit to my needs so I improved it for my purposes:
 In the end, there where so many changes, that I decided to rename the generator to "cc-angular" where "cc" stands for
  "clean code".
 
+This project is one of many things that you can use to get started
+on a new app. For a comparison of the options and the trade-offs between
+them, please visit [this](http://www.dancancro.com/comparison-of-angularjs-application-starters) link.
+
+
 Features
 
 * Provides a directory structure geared towards large Angular projects.
