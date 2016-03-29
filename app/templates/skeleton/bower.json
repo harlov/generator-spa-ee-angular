@@ -22,6 +22,7 @@
         "moment": "*",
         "toastr": "~2.1",
         "less.js": "~1.6",
-        "font-awesome": "~4.3"
+        "font-awesome": "~4.3",
+        "restangular": "~1.5.1"
     }
 }

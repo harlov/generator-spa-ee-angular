@@ -173,6 +173,11 @@ module.exports = function(grunt) {
                 ]
             }
         },
+        wiredep: {
+            task: {
+                src: ['src/index.html'],
+            }
+        },
         dom_munger: {
             read: {
                 options: {
@@ -317,10 +322,29 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('build', [
-        'jshint', 'clean:before', 'less', 'dom_munger', 'ngtemplates', 'cssmin', 'concat', 'ngAnnotate', 'uglify',
-        'copy', 'htmlmin', 'clean:after'
+        'wiredep',
+        'jshint',
+        'clean:before',
+        'less',
+        'dom_munger',
+        'ngtemplates',
+        'cssmin',
+        'concat',
+        'ngAnnotate',
+        'uglify',
+        'copy',
+        'htmlmin',
+        'clean:after'
     ]);
-    grunt.registerTask('serve', ['dom_munger:read', 'jshint', 'karma:during_watch', 'connect', 'less:development', 'watch']);
+    grunt.registerTask('serve', [
+        'wiredep',
+        'dom_munger:read',
+        'jshint',
+        'karma:during_watch',
+        'connect',
+        'less:development',
+        'watch'
+    ]);
     grunt.registerTask('test', ['dom_munger:read', 'karma:all_tests', 'e2e-test']);
 
     grunt.registerTask('e2e-test', ['connect:test', 'protractor:e2e']);

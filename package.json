@@ -1,7 +1,7 @@
 {
-    "name": "generator-cc-angular",
-    "version": "1.0.3",
-    "description": "BDD of Enterprise AngularJS projects with pleasure.",
+    "name": "generator-spa-angular",
+    "version": "0.0.1",
+    "description": "scaffolding enterprise AngularJS SPA",
     "keywords": [
         "yeoman-generator",
         "angularjs",
@@ -11,17 +11,17 @@
         "cucumber",
         "clean code"
     ],
-    "homepage": "https://github.com/leanovate/generator-cc-angular",
-    "bugs": "https://github.com/leanovate/generator-cc-angular/issues",
+    "homepage": "https://github.com/harlov/generator-spa-ee-angular",
+    "bugs": "https://github.com/harlov/generator-spa-ee-angular/issues",
     "author": {
-        "name": "André Bauer",
-        "email": "andre.bauer@leanovate.de",
-        "url": "https://github.com/anbauer"
+        "name": "Nikita Harlov",
+        "email": "nikita@harlov.com",
+        "url": "https://github.com/harlov"
     },
     "main": "app/index.js",
     "repository": {
         "type": "git",
-        "url": "git://github.com/leanovate/generator-cc-angular.git"
+        "url": "git://github.com/harlov/generator-spa-ee-angular.git"
     },
     "scripts": {
         "test": "mocha"
