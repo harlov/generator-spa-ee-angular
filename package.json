@@ -1,6 +1,6 @@
 {
     "name": "generator-spa-angular",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "description": "scaffolding enterprise AngularJS SPA",
     "keywords": [
         "yeoman-generator",

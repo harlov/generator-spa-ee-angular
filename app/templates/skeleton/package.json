@@ -17,6 +17,7 @@
         "grunt-contrib-watch": "~0.6",
         "grunt-protractor-runner": "~1.2",
         "grunt-wiredep": "^2.0.0",
+        "grunt-writefile": "^0.1.2",
         "grunt-dom-munger": "~3",
         "grunt-karma": "~0.8",
         "grunt-ng-annotate": "~0.9",

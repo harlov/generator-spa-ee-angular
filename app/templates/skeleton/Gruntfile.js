@@ -61,6 +61,16 @@ module.exports = function(grunt) {
 
     // Project configuration.
     grunt.initConfig({
+        writefile: {
+            dev: {
+                src: 'conf/api-config.dev.js',
+                dest: 'src/appCore/constants_api.js'
+            },
+            prod: {
+                src: 'conf/api-config.prod.js',
+                dest: 'src/appCore/constants_api.js'
+            }
+        },
         connect: {
             main: {
                 options: {
@@ -322,6 +332,7 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('build', [
+        'writefile:prod',
         'wiredep',
         'jshint',
         'clean:before',
@@ -337,6 +348,7 @@ module.exports = function(grunt) {
         'clean:after'
     ]);
     grunt.registerTask('serve', [
+        'writefile:dev',
         'wiredep',
         'dom_munger:read',
         'jshint',

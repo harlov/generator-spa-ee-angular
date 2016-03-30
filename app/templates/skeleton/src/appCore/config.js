@@ -21,11 +21,12 @@
     core.config(configure);
 
     /* @ngInject */
-    function configure($logProvider, exceptionHandlerProvider) {
+    function configure($logProvider, exceptionHandlerProvider, RestangularProvider, apiConfig) {
         if ($logProvider.debugEnabled) {
             $logProvider.debugEnabled(true);
         }
         exceptionHandlerProvider.configure(config.appErrorPrefix);
+        RestangularProvider.setBaseUrl(apiConfig['url']);
     }
 
 })(angular);

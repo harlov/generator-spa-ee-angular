@@ -7,6 +7,7 @@ This generator is a fork of [cc-angular](https://github.com/leanovate/generator-
 
 - Bower components auto-injected into index.html (by wiredep package)
 - Added restangular module (for fast building REST-full interaction.)
+- separated API develop/production configuration
 - Subgenerator `rest_service` - add restangularzed service.
 
 To start
@@ -37,7 +38,9 @@ To create a project:
 Grunt Tasks
 -------------
 
-Now that the project is created, you have 3 simple Grunt commands available:
+After creating project, edit `conf/api-config.dev.js` and `conf/api-config.prod.js` (set valid api url's)
+
+Now, grunt commands available:
 
     grunt serve   #This will run a development server with watch & livereload enabled.
     grunt test    #Run local unit tests.
@@ -55,7 +58,7 @@ There are a set of subgenerators to initialize empty Angular components.  Each o
 * Update app.less and add the @import as needed.
 * For partials, update the app.js, adding the necessary route call if a route was entered in the generator prompts.
 
-There are generators for `directive`,`partial`,`service`, `filter`, and `module`.
+There are generators for `directive`,`partial`,`service`, `rest_service`, `filter`, and `module`.
 
 Running a generator:
 
