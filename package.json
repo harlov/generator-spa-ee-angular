@@ -5,11 +5,12 @@
     "keywords": [
         "yeoman-generator",
         "angularjs",
+        "spa",
+        "restangular",
         "protractor",
         "tdd",
         "atdd",
-        "cucumber",
-        "clean code"
+        "cucumber"
     ],
     "homepage": "https://github.com/harlov/generator-spa-ee-angular",
     "bugs": "https://github.com/harlov/generator-spa-ee-angular/issues",
