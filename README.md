@@ -34,11 +34,11 @@ To create a project:
     #we need webdriver for protractor
     ./node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update
 
+    After creating project, edit `conf/api-config.dev.js` and `conf/api-config.prod.js` (set valid api url's)
+
 
 Grunt Tasks
 -------------
-
-After creating project, edit `conf/api-config.dev.js` and `conf/api-config.prod.js` (set valid api url's)
 
 Now, grunt commands available:
 
